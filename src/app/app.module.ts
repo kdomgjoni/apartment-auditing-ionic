@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
+
+
 const config = {
   apiKey: "AIzaSyCvhiBpfjIB8nkZjAxb7WYmg8FuoeJhL9I",
   authDomain: "ionic-apartment-auditing.firebaseapp.com",
@@ -30,7 +32,7 @@ const config = {
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   providers: [
     StatusBar,
