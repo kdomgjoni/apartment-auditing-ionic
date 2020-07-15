@@ -1,5 +1,7 @@
 {
   "name": "apartment-auditing-ionic",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

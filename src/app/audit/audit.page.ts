@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IAppointment } from '../appointment.model';
 import startCase from 'lodash-es/startCase';
 import { Router } from '@angular/router';
-
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-audit',
@@ -15,7 +15,14 @@ import { Router } from '@angular/router';
 })
 export class AuditPage implements OnInit {
 
-  constructor(private db: AngularFireDatabase, private route: ActivatedRoute, private router: Router) {
+  base64Images: string[];
+
+  constructor(
+    private db: AngularFireDatabase,
+    private route: ActivatedRoute,
+    private router: Router,
+    private camera: Camera,
+    ) {
     const params = this.route.snapshot.params;
     this.itemRef = this.db.object<IAppointment>(`/appointments/${params.key}`);
     this.itemRef.valueChanges().subscribe(appointment => {
@@ -74,17 +81,32 @@ export class AuditPage implements OnInit {
     }];
   }
 
-  submit() {
-    this.itemRef.update({
-      ...this.model,
-      status: this.form.invalid ? 'incomplete' : 'complete',
+  openCamera() {
+    const options: CameraOptions = {
+      quality: 100,
+      cameraDirection: this.camera.Direction.BACK,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE 
+    };
+    this.camera.getPicture(options).then((imageData) => {
+      this.base64Images.push(`data:image/jpeg;base64,${imageData}`); 
     });
-    this.router.navigateByUrl('/home');
   }
 
+    submit() {
+      this.itemRef.update({
+        ...this.model,
+        photos: this.base64Images,
+        status: this.form.invalid ? 'incomplete' : 'complete',
+      });
+      this.router.navigateByUrl('/home');
+    }
 
 
-  ngOnInit() {
+
+
+    ngOnInit() {
+    }
+
   }
-
-}

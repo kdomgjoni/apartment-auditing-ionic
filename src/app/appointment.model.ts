@@ -11,4 +11,5 @@ export interface IAppointment {
   color: string;
   label: string;
   key: string;
+  photos: any;
 }
