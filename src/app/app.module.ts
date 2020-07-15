@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -33,6 +34,9 @@ const config = {
     AppRoutingModule,
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
+    ReactiveFormsModule,
+    //FormlyModule.forRoot(),
+    //FormlyIonicModule,
   ],
   providers: [
     StatusBar,

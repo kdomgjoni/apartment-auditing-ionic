@@ -10,4 +10,5 @@ export interface IAppointment {
   assignedTo: string;
   color: string;
   label: string;
+  key: string;
 }

@@ -13,7 +13,6 @@ export class HomePage implements OnInit {
   itemRef: AngularFireList<IAppointment>;
   appointments$: Observable<IAppointment[]>;
 
-  data;
 
   constructor(private database: AngularFireDatabase) {
     this.itemRef = this.database.list('/appointments');

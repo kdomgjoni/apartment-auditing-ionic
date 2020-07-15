@@ -1,19 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AuditPageRoutingModule } from './audit-routing.module';
-
 import { AuditPage } from './audit.page';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyIonicModule } from '@ngx-formly/ionic';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AuditPage
+  }
+];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyIonicModule,
     IonicModule,
-    AuditPageRoutingModule
+    RouterModule.forChild(routes)
   ],
   declarations: [AuditPage]
 })
